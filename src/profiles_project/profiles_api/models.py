@@ -1,6 +1,9 @@
 from django.db import models
+# Base of django standard user model
 from django.contrib.auth.models import AbstractBaseUser
+# Allows for addition of users
 from django.contrib.auth.models import PermissionsMixin
+# User model manager for teaching django how to use profile model
 from django.contrib.auth.models import BaseUserManager
 
 # Create your models here.
