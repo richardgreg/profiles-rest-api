@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+from rest_framework import viewsets # Base model for rstfrmwrk views
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -35,7 +37,7 @@ class HelloAPIView(APIView):
             return Response({'message': message})
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
     def put(self, request, pk=None):
         '''Handles updating object'''
 
@@ -50,3 +52,16 @@ class HelloAPIView(APIView):
         '''Deletes an object'''
 
         return Response({'method: delete'})
+
+class HelloViewSet(viewsets.ViewSet):
+    '''Test API ViewSet'''
+
+    def list(self, request):
+        '''Returns a message'''
+        a_viewset = [
+        'Uses actions (list, create, update, retrieve, partial update, destroy)',
+        'Auto maps to urls using routers',
+        'Provides more functionality with less code'
+        ]
+
+        return Response({'message': 'Hello', 'a_viewset': a_viewset})
