@@ -10,12 +10,12 @@ from . import models
 
 # Create your views here.
 class HelloAPIView(APIView):
-    '''Test API View'''
+    """Test API View"""
 
     serializer_class = serializers.HelloSerializer
 
     def get(self, request, format=None):
-        '''Returns a list of API view functions'''
+        """Returns a list of API view functions"""
 
         an_apiview = [
             'Uses HTTP methods as functions (get, post, patch, put, delete)',
@@ -27,7 +27,7 @@ class HelloAPIView(APIView):
         return Response({'message': 'Hello', 'an_apiview': an_apiview})
 
     def post(self, request):
-        '''Create a hello message with name'''
+        """Create a hello message with name"""
 
         serializer = serializers.HelloSerializer(data=request.data)
 
@@ -41,27 +41,27 @@ class HelloAPIView(APIView):
                             status=status.HTTP_400_BAD_REQUEST)
 
     def put(self, request, pk=None):
-        '''Handles updating object'''
+        """Handles updating object"""
 
         return Response({'method: put'})
 
     def patch(self, request, pk=None):
-        '''Patch requests, only updates fields provided in the request'''
+        """Patch requests, only updates fields provided in the request"""
 
         return Response({'method: patch'})
 
     def delete(self, request, pk=None):
-        '''Deletes an object'''
+        """Deletes an object"""
 
         return Response({'method: delete'})
 
 class HelloViewSet(viewsets.ViewSet):
-    '''Test API ViewSet'''
+    """Test API ViewSet"""
 
     serializer_class = serializers.HelloSerializer
 
     def list(self, request):
-        '''Returns a message'''
+        """Returns a message"""
         a_viewset = [
         'Uses actions (list, create, update, retrieve, partial update, destroy)',
         'Auto maps to urls using routers',
@@ -110,5 +110,5 @@ class UserProfileViewSet(viewsets.ModelViewSet):
 
     serializer_class = serializers.UserProfileSerializer
 
-    # Queryset for how to retrieeve objects from database
+    # Queryset for how to retrieve objects from database
     queryset = models.UserProfile.objects.all()
