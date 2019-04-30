@@ -4,9 +4,11 @@ from rest_framework import viewsets # Base model for rstfrmwrk views
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.authentication import TokenAuthentication
 
 from . import serializers
 from . import models
+from . import permissions
 
 # Create your views here.
 class HelloAPIView(APIView):
@@ -112,3 +114,9 @@ class UserProfileViewSet(viewsets.ModelViewSet):
 
     # Queryset for how to retrieve objects from database
     queryset = models.UserProfile.objects.all()
+
+    # A tuple containing all the authentication class that will be used by API
+    authentication_classes = (TokenAuthentication,)
+
+    # A tuple containing all the permission class that will be used by API
+    permission_classes = (permissions.UpdateOwnProfile,)
