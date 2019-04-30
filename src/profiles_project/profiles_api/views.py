@@ -5,6 +5,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
+from rest_framework import filters
+from django_filters.rest_framework import DjangoFilterBackend
 
 from . import serializers
 from . import models
@@ -120,3 +122,8 @@ class UserProfileViewSet(viewsets.ModelViewSet):
 
     # A tuple containing all the permission class that will be used by API
     permission_classes = (permissions.UpdateOwnProfile,)
+
+    # A tuple containing all the filter class that will be used by API
+    filter_backends = (filters.SearchFilter, DjangoFilterBackend)
+
+    search_fields = ['name', 'email',]
